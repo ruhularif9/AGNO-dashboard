@@ -7,9 +7,21 @@ from dotenv import load_dotenv
 import os
 
 # ------------------------------
-# Load environment variables
+# Load environment variables safely
 # ------------------------------
-load_dotenv()
+# Check both backend/.env and project root .env
+backend_env = os.path.join(os.path.dirname(__file__), ".env")
+root_env = os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env")
+
+if os.path.exists(backend_env):
+    load_dotenv(backend_env)
+    print(f"✅ Loaded environment from backend/.env")
+elif os.path.exists(root_env):
+    load_dotenv(root_env)
+    print(f"✅ Loaded environment from root .env")
+else:
+    print("⚠️ No .env file found in backend or root")
+
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
 if not openai_api_key:
