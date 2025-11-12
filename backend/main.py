@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.routers import chat, dashboard
+from .routers import chat, dashboard
 from backend.database import db
 
 app = FastAPI(title="AGNO OS Dashboard API")
