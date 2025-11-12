@@ -1,0 +1,35 @@
+# Core FastAPI
+fastapi==0.115.6
+uvicorn==0.34.0
+python-dotenv==1.0.1
+
+# Database
+motor==4.3.1
+pymongo==5.5.0
+SQLAlchemy==2.0.37
+
+# AI / LLM
+openai==1.59.8
+anthropic==0.0.1
+langchain==0.3.14
+langgraph==0.2.64
+agno==0.0.1
+
+# HTTP / Async
+httpx==0.28.1
+aiohttp==3.11.11
+anyio==4.8.0
+sniffio==1.3.1
+
+# Utilities
+pandas==2.2.3
+numpy==1.26.4
+python-dateutil==2.9.0.post0
+pytz==2024.2
+typing-inspect==0.9.0
+typing_extensions==4.12.2
+python-dotenv==1.0.1
+
+# Optional extras
+rich==13.9.4
+tqdm==4.67.1
