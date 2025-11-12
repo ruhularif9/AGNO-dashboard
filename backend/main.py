@@ -1,7 +1,9 @@
+# backend/main.py
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .routers import chat, dashboard
-from backend.database import db
+from .database import db  # use relative import to avoid Render import issues
 
 app = FastAPI(title="AGNO OS Dashboard API")
 
@@ -45,7 +47,13 @@ async def test_db():
         stats_doc.pop("_id", None)  # remove internal MongoDB ID for cleaner response
         return stats_doc
     # Return default zero values if no document exists
-    return {"activeUsers": 0, "revenue": 0.0, "newSignups": 0, "userGrowth": 0, "revenueGrowth": 0.0}
+    return {
+        "activeUsers": 0,
+        "revenue": 0.0,
+        "newSignups": 0,
+        "userGrowth": 0,
+        "revenueGrowth": 0.0
+    }
 
 # -------------------------
 # Test Dashboard Document
@@ -55,5 +63,11 @@ async def test_dashboard_doc():
     """Fetch raw dashboard stats document from MongoDB."""
     doc = await db.dashboard_stats.find_one({})
     if doc:
-        doc["_id"] = str(doc["_id"])  # optional: convert ObjectId to string for frontend
-    return doc or {"activeUsers": 0, "revenue": 0.0, "newSignups": 0, "userGrowth": 0, "revenueGrowth": 0.0}
+        doc["_id"] = str(doc["_id"])  # convert ObjectId to string for frontend
+    return doc or {
+        "activeUsers": 0,
+        "revenue": 0.0,
+        "newSignups": 0,
+        "userGrowth": 0,
+        "revenueGrowth": 0.0
+    }
