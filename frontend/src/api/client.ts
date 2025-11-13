@@ -1,13 +1,12 @@
-// src/api/client.ts
-const backendUrl = "https://agno-dashboard.onrender.com/api/dashboard";
-
+console.log("Backend URL:", import.meta.env.VITE_BACKEND_URL);
 
 export async function getDashboardData() {
   try {
-    const res = await fetch(`${backendUrl}/api/dashboard/stats`); // 👈 add /stats
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
+    console.log("Fetching data from:", `${backendUrl}/stats`);
+    
+    const res = await fetch(`${backendUrl}/stats`);
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
     const data = await res.json();
     return data;
   } catch (error) {
@@ -15,4 +14,3 @@ export async function getDashboardData() {
     throw error;
   }
 }
-console.log("hello");
