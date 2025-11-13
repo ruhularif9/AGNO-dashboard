@@ -8,6 +8,7 @@ import Sales from "./pages/Sales";
 import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
 
+console.log("Backend URL:", import.meta.env.VITE_BACKEND_URL);
 const App = () => {
   // State for search query
   const [searchQuery, setSearchQuery] = useState("");

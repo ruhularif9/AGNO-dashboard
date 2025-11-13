@@ -1,17 +1,12 @@
-// src/api/client.ts
 
-// Use your backend URL from Vercel environment variables
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
+const backendUrl =
+  import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
 
-// Example API function
 export async function getDashboardData() {
   try {
     const res = await fetch(`${backendUrl}/api/dashboard`);
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
-    const data = await res.json();
-    return data;
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+    return await res.json();
   } catch (error) {
     console.error("Error fetching dashboard data:", error);
     throw error;
