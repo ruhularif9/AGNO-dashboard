@@ -15,3 +15,4 @@ export async function getDashboardData() {
     throw error;
   }
 }
+console.log("hello");
