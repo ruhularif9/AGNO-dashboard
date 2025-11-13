@@ -1,5 +1,6 @@
 // src/api/client.ts
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
+const backendUrl = "https://agno-dashboard.onrender.com/api/dashboard";
+
 
 export async function getDashboardData() {
   try {
