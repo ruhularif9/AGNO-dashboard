@@ -1,13 +1,20 @@
-console.log("Backend URL:", import.meta.env.VITE_BACKEND_URL);
+// src/api/client.ts
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 export async function getDashboardData() {
   try {
-    const backendUrl = import.meta.env.VITE_BACKEND_URL;
-    console.log("Fetching data from:", `${backendUrl}/stats`);
-    
-    const res = await fetch(`${backendUrl}/stats`);
-    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+    console.log("Backend URL:", backendUrl); // ✅ to confirm in console
+
+    const res = await fetch(`${backendUrl}/api/dashboard/stats`, {
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
     const data = await res.json();
+    console.log("Dashboard data fetched:", data);
     return data;
   } catch (error) {
     console.error("Error fetching dashboard data:", error);
