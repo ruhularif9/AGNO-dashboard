@@ -1,15 +1,18 @@
-# backend/main.py
-
+from backend import agno_agent
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .routers import chat, dashboard
 from .database import db  # use relative import to avoid Render import issues
+import os
 
 app = FastAPI(title="AGNO OS Dashboard API")
 
 # -------------------------
 # CORS Configuration
 # -------------------------
+# Allow local dev + deployed frontend URL (Vercel)
+frontend_origin = os.getenv("FRONTEND_URL", "http://localhost:5173")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -17,6 +20,7 @@ app.add_middleware(
         "http://127.0.0.1:5173",
         "http://localhost:5174",
         "http://127.0.0.1:5174",
+        frontend_origin,  # Add Vercel frontend URL dynamically
     ],
     allow_credentials=True,
     allow_methods=["*"],
